@@ -1,0 +1,21 @@
+.login {
+  width: 30%;
+  height: 310px;
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 200px;
+}
+
+.switch-signup {
+  font-size: 14px;
+  margin-top: 15px;
+  margin-left: 25%;
+  color: blue;
+  text-decoration: underline;
+}
+
+.switch-signup:hover {
+    cursor: grab;
+}
