@@ -1,24 +1,24 @@
-import "/Users/amirashlag/Betting-Game-project-FE/my-app/src/pages/LoggedOut/Login.css";
+import "./Login.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import axios from "axios";
 
 const Login = ({ setShowLogin }) => {
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
-  async function clickHandler(){
-    setError(false)
+  async function clickHandler() {
+    setError(false);
     const login = { email: email, password: password };
-    if (email && password){
+    if (email && password) {
       const res = await axios.post("http://localhost:8080/users/login", login);
-      console.log(res)
-      setEmail("")
-      setPassword("")
-    }else{
-      setError(true)
+      console.log(res);
+      setEmail("");
+      setPassword("");
+    } else {
+      setError(true);
     }
   }
   return (
@@ -76,4 +76,4 @@ const Login = ({ setShowLogin }) => {
   );
 };
 
-export default Login
+export default Login;

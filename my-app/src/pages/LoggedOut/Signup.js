@@ -1,12 +1,12 @@
-import "/Users/amirashlag/Betting-Game-project-FE/my-app/src/pages/LoggedOut/Signup.css";
+import "./Signup.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import axios from "axios";
 
 const Signup = ({ setShowLogin }) => {
-   const [emptyError, setEmptyError] = useState(false);
-   const [passwordError, setPasswordError] = useState(false);
+  const [emptyError, setEmptyError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const [signUpInfo, setSignUpInfo] = useState({
     userName: "",
     email: "",
@@ -19,24 +19,30 @@ const Signup = ({ setShowLogin }) => {
   };
 
   async function clickHandler() {
-    setEmptyError(false)
-    setPasswordError(false)
+    setEmptyError(false);
+    setPasswordError(false);
     console.log(Object.values(signUpInfo));
     if (!Object.values(signUpInfo).includes("")) {
-      if ((signUpInfo.password === signUpInfo.repassword) && signUpInfo.password.length > 5) {
+      if (
+        signUpInfo.password === signUpInfo.repassword &&
+        signUpInfo.password.length > 5
+      ) {
         try {
           console.log();
-          const res =  await axios.post("http://localhost:8080/users/signup", signUpInfo);
-          console.log(res)
+          const res = await axios.post(
+            "http://localhost:8080/users/signup",
+            signUpInfo
+          );
+          console.log(res);
           setShowLogin(true);
         } catch (e) {
           console.error(e);
         }
-      } else{
-        setPasswordError(true)
+      } else {
+        setPasswordError(true);
       }
     } else {
-      setEmptyError(true)
+      setEmptyError(true);
     }
   }
 
