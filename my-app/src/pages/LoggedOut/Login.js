@@ -1,4 +1,4 @@
-import "/Users/amirashlag/Betting-Game-project-FE/my-app/src/pages/LoggedOut/Login.css";
+import "./Login.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
@@ -13,10 +13,15 @@ const Login = ({ setShowLogin }) => {
     setError(false)
     const login = { email: email, password: password };
     if (email && password){
+      try{
       const res = await axios.post("http://localhost:8080/users/login", login);
       console.log(res)
       setEmail("")
       setPassword("")
+      } catch (e){
+        console.error(e)
+        setError(true)
+      }
     }else{
       setError(true)
     }

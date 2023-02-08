@@ -1,4 +1,4 @@
-import "/Users/amirashlag/Betting-Game-project-FE/my-app/src/pages/LoggedOut/Signup.css";
+import "./Signup.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
