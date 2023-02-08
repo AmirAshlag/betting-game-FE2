@@ -12,8 +12,8 @@ const Login = ({ setShowLogin }) => {
   async function clickHandler() {
     setError(false);
     const login = { email: email, password: password };
-    try {
-      if (email && password) {
+    if (email && password) {
+      try {
         const res = await axios.post(
           "http://localhost:8080/users/login",
           login
@@ -21,11 +21,11 @@ const Login = ({ setShowLogin }) => {
         console.log(res);
         setEmail("");
         setPassword("");
-      } else {
+      } catch (e) {
+        console.error(e);
         setError(true);
       }
-    } catch (e) {
-      console.log(e);
+    } else {
       setError(true);
     }
   }
