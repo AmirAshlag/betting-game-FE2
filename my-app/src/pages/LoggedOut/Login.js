@@ -13,10 +13,18 @@ const Login = ({ setShowLogin }) => {
     setError(false);
     const login = { email: email, password: password };
     if (email && password) {
-      const res = await axios.post("http://localhost:8080/users/login", login);
-      console.log(res);
-      setEmail("");
-      setPassword("");
+      try {
+        const res = await axios.post(
+          "http://localhost:8080/users/login",
+          login
+        );
+        console.log(res);
+        setEmail("");
+        setPassword("");
+      } catch (e) {
+        console.error(e);
+        setError(true);
+      }
     } else {
       setError(true);
     }
