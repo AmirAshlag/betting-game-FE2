@@ -1,4 +1,4 @@
-import "/Users/amirashlag/Betting-Game-project-FE/my-app/src/pages/LoggedOut/Login.css";
+import "./Login.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -22,9 +22,16 @@ const Login = ({ setShowLogin }) => {
           Submit
         </Button>
       </Form>
-      <div className="switch-signup" onClick={()=>{setShowLogin(false)}}>dont have an account, sign up</div>
+      <div
+        className="switch-signup"
+        onClick={() => {
+          setShowLogin(false);
+        }}
+      >
+        dont have an account, sign up
+      </div>
     </div>
   );
 };
 
-export default Login
+export default Login;
