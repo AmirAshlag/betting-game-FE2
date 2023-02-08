@@ -1,34 +1,41 @@
 .signup {
     width: 30%;
-    height: 480px;
+    height: fit-content;
     background-color: aliceblue;
     padding: 20px;
     border-radius: 5px;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 180px;
 }
 
-.form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 250px;
-    width: 80%;
-    margin-left: 10%;
+.switch-signup {
+  font-size: 14px;
+  margin-top: 15px;
+  margin-left: 25%;
+  color: blue;
+  text-decoration: underline;
 }
 
-.signup-input{
-    margin-left: 20%;
+.switch-signup:hover {
+    cursor: grab;
 }
 
-.signup-input2{
-    margin-left: 30%;
+
+.emptyError {
+  border: 1px solid;
+  margin: 10px 0px;
+  padding: 10px 10px 10px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+   color: #d8000c;
+  background-color: #ffbaba;
+  background-image: url("https://i.imgur.com/GnyDvKN.png");
 }
 
-.signup-input3{
-    margin-left: 22%;
-}
-
-.signup-input4{
-    margin-left: 5%;
+.signup-body{
+  border: 1px solid white;
+  height: 99vh;
+  width: 100%;
+  background-image: url("https://media.npr.org/assets/img/2020/06/10/gettyimages-200199027-001-b5fb3d8d8469ab744d9e97706fa67bc5c0e4fa40.jpg");
+  background-size: contain;
 }
