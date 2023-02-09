@@ -1,0 +1,10 @@
+.myBet-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-title {
+  display: flex;
+  justify-content: center;
+}

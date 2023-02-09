@@ -1,0 +1,10 @@
+.homeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chooseSport {
+  display: flex;
+  justify-content: space-between;
+}
