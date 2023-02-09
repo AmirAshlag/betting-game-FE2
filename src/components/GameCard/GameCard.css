@@ -1,0 +1,85 @@
+.team-logo {
+  height: 130px;
+  max-width: 180px;
+}
+
+.team-name {
+  max-width: fit-content;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.modal-body {
+  height: fit-content;
+  padding-bottom: 20px;
+}
+
+.team-data {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid black; */
+}
+
+.games-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.vs {
+  font-weight: bold;
+  font-size: 40px;
+  margin-top: 50px;
+}
+
+.name-flex {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  /* border: 1px solid black; */
+}
+
+.team-score {
+  margin-top: 5px;
+  font-size: 40px;
+}
+
+.bet {
+  padding: 10px;
+  box-sizing: content-box;
+}
+
+.bet-container {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* border: 1px solid black; */
+  height: 80px;
+  position: relative;
+  padding-bottom: 145px;
+}
+
+.submit-bet{
+    /* margin-left: 77%;
+    margin-top: 10px; */
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.top{
+  margin-top: 10px;
+}
+.bet-title{
+    font-size: 25px;
+    margin-bottom: 5px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+.bet-none{
+    height: 0px;
+}
