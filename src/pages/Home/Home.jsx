@@ -10,11 +10,18 @@ export default function Home() {
         <div className="header">
           <h1>Bet Game</h1>
         </div>
-        <div className="expTitle">
-          <h5>explanation</h5>
+        <div className="expSection">
+          <div className="welcomeTitle">
+            <h5>Welcome to Bet Game!</h5>
+          </div>
+          <div className="welcomeBody">
+            <h6>
+              choose your favorite sport and start betting with your friends!
+            </h6>
+          </div>
         </div>
       </div>
-      <div className="chooseButton">
+      <div className="chooseContainer">
         <Dropdown>
           <div className="justify-content-md-center">
             <div className="chooseSport">

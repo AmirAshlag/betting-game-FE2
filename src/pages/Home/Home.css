@@ -18,14 +18,41 @@
   margin: 0 0 10vw 0;
 }
 
-.chooseSport {
+.expSection {
+  font-size: 3vw;
+  font-weight: 600;
+  margin: 4vw 6vw 0vw 10vw;
+}
+
+.welcomeTitle {
+  font-size: 3vw;
+  font-weight: 600;
+  margin: 0 0 0 10vw;
+}
+
+.welcomeBody {
+  margin: 5vw 10vw 10px 7vw;
+}
+
+.chooseContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10vw 0 10vw 0;
+  margin: 0vw 0 10vw 0;
 }
 
-.chooseTitle,
+.chooseSport {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 10vw;
+}
+.chooseTitle {
+  font-size: 3vw;
+  font-weight: 600;
+  margin: 0 2vw 0 2vw;
+}
 .chooseButton {
   font-size: 2.5vw;
   font-weight: 600;
