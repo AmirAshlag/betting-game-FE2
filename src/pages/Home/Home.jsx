@@ -1,5 +1,6 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import GameList from "../../components/GameList/GameList";
 import "./Home.css";
 
 // const myData = [
@@ -45,6 +46,9 @@ export default function Home() {
             </div>
           </Dropdown>
         </div>
+      </div>
+      <div className="gameList">
+        <GameList />
       </div>
     </div>
   );

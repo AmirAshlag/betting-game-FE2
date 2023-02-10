@@ -12,12 +12,8 @@ function App() {
       <NavBar path="/" />
       <Routes>
         <Route path="/" element={<Home />}></Route>
-<<<<<<< HEAD
         <Route path="/my-bets" element={<MyBets />}></Route>
-        <Route path="/" element={<LoggedOut />} />
-=======
-        <Route path="/login" element={<LoggedOut />} />
->>>>>>> main
+        <Route path="/out" element={<LoggedOut />} />
       </Routes>
     </BrowserRouter>
   );
