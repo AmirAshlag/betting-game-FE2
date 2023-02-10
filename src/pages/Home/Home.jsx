@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import GameList from "../../components/GameList/GameList";
 import "./Home.css";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 export default function Home() {
+  const [value, onChange] = useState(new Date());
   return (
     <div className="homeContainer">
       <div className="homeTitles">
@@ -21,6 +24,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className="calender">
+        <Calendar onChange={onChange} value={value} />
+      </div>
       <div className="chooseContainer">
         <Dropdown>
           <div className="justify-content-md-center">
@@ -35,6 +41,7 @@ export default function Home() {
                 ></Dropdown.Toggle>
               </span>
             </div>
+
             <Dropdown.Menu>
               <Dropdown.Item href="#/action-1">NBA</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Champions League</Dropdown.Item>
