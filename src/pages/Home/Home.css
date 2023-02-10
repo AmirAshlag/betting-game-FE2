@@ -1,10 +1,33 @@
 .homeContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.homeTitles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 15vw 0 10vw 0;
+}
+
+.header {
+  font-size: 5vw;
+  font-weight: 600;
+  margin: 0 0 10vw 0;
 }
 
 .chooseSport {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  margin: 10vw 0 10vw 0;
+}
+
+.chooseTitle,
+.chooseButton {
+  font-size: 2.5vw;
+  font-weight: 600;
+  margin: 0 2vw 0 2vw;
 }
