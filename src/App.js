@@ -3,8 +3,6 @@ import LoggedOut from "./pages/LoggedOut/LoggedOut";
 import Home from "./pages/Home/Home";
 import { MyBets } from "./pages/MyBets/MyBets";
 import NavBar from "./components/NavBar/NavBar";
-// import { Datepicker, Eventcalendar } from "@mobiscroll/react";
-// import "@mobiscroll/react/dist/css/mobiscroll.min.css";
 
 function App() {
   return (
