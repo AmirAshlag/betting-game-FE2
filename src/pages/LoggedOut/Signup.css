@@ -39,3 +39,15 @@
   background-image: url("https://media.npr.org/assets/img/2020/06/10/gettyimages-200199027-001-b5fb3d8d8469ab744d9e97706fa67bc5c0e4fa40.jpg");
   background-size: contain;
 }
+
+@media only screen and (max-width: 600px) {
+  .signup {
+    width: 80%;
+    height: fit-content;
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 60px;
+}
+}

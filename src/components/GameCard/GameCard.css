@@ -83,3 +83,7 @@
 .bet-none{
     height: 0px;
 }
+
+.gamelist-headline{
+  text-decoration: underline;
+}

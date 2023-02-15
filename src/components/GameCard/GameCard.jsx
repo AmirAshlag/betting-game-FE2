@@ -4,15 +4,22 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./GameCard.css";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
-function GameCard() {
+function GameCard({ gameId }) {
   const [gameData, setGameData] = useState("");
   const [bet, setbBet] = useState(false);
 
+   const location = useLocation();
+   const pathname = location.pathname;
+   const id = pathname.split("/")[2];
+   
+
   useEffect(() => {
-    axios.get(`http://localhost:8080/games/ByDate/2023-02-11`).then((res) => {
+    axios.get(`http://localhost:8080/games/ById/${id}`).then((res) => {
       setGameData(res.data.response[0]);
     });
+    console.log(id);
   }, []);
 
   useEffect(() => {
@@ -25,12 +32,11 @@ function GameCard() {
       style={{ display: "block", position: "initial" }}
     >
       <Modal.Dialog>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>NBA: 2023-02-11</Modal.Title>
         </Modal.Header>
 
         <Modal.Body className="modal-body">
-          {/* <p>Modal body text goes here.</p> */}
           {gameData && (
             <div className="games-container">
               <div className="team-data">

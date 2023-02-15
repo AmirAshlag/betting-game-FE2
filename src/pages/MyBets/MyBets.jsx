@@ -48,9 +48,13 @@ export const MyBets = () => {
         </ListGroup.Item>
       </ListGroup>
       <br />
+
       <div className="balance-sheets">
+        <h6>Wines Bets</h6>
         <ProgressBar variant="success" now={40} />
+        <h6>Lose Bets</h6>
         <ProgressBar variant="danger" now={80} />
+        <h6>My Coins</h6>
         <ProgressBar variant="info" now={1000} />
       </div>
     </div>
