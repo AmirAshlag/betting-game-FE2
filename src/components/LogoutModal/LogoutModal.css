@@ -1,0 +1,50 @@
+.logout-modal{
+    width: 50%;
+    height: 90px;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    right: 10px;
+    top: 50px;
+    color: white;
+    padding: 10px;
+    box-sizing: content-box;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.logout-text{
+    font-size: large;
+    margin-left: 30px;
+}
+
+.logout-btn {
+  width: 50px;
+  background-color:#ffffa9;
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 6px;
+  box-sizing: content-box;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.logout-btn-container{
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-around;
+}

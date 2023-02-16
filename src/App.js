@@ -8,12 +8,12 @@ import GameCard from "./components/GameCard/GameCard";
 function App() {
   return (
     <BrowserRouter>
-      <NavBar path="/" />
+      <NavBar/>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/my-bets" element={<MyBets />}></Route>
         <Route path="/out" element={<LoggedOut />} />
-        <Route path="/game/:id" element={<GameCard/>} />
+        <Route path="/game/:id" element={<GameCard />} />
       </Routes>
     </BrowserRouter>
   );

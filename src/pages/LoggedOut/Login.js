@@ -3,11 +3,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setShowLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const navigate = useNavigate()
 
   async function clickHandler() {
     setError(false);
@@ -16,8 +18,12 @@ const Login = ({ setShowLogin }) => {
       try {
         const res = await axios.post(
           "http://localhost:8080/users/login",
-          login
+          login,
+          { withCredentials: true }
         );
+        if (res.status == 200) {
+          navigate('/')
+        }
         console.log(res);
         setEmail("");
         setPassword("");
