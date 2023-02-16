@@ -1,10 +1,12 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 
 export const MyBets = () => {
+  const { userId } = useParams();
   const { user } = useContext(AuthContext);
   return (
     <div className="myBet-container">
@@ -58,8 +60,9 @@ export const MyBets = () => {
           <h6>Lose Bets</h6>
           <ProgressBar variant="danger" now={80} />
         </div>
+        <br />
         <div className="my-coins">
-          <h6>My Coins {user}</h6>
+          <h4>My Coins {user.coins}</h4>
         </div>
       </div>
     </div>

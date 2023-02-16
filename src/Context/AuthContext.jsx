@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { domain } from "../constants";
 
 const defaultState = {
   isLoggedIn: false,
@@ -13,12 +12,15 @@ export function AuthContextProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const coinsByUserId = async (userId) => {
-    const response = await fetch(`${domain}/coins/${userId}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ userId }),
-    });
+    const response = await fetch(
+      `http://localhost:8080/users/${userId}/coins`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ userId }),
+      }
+    );
     const data = await response.json();
     if (response.status !== 200) {
       throw new Error(data.message);
