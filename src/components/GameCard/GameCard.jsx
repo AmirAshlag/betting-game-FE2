@@ -1,19 +1,21 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "./GameCard.css";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
+import { UserContext2 } from "../../Context/UserContext/UserContext";
 
 function GameCard({ gameId }) {
   const [gameData, setGameData] = useState("");
   const [bet, setbBet] = useState(false);
 
-   const location = useLocation();
-   const pathname = location.pathname;
-   const id = pathname.split("/")[2];
-   
+  const location = useLocation();
+  const pathname = location.pathname;
+  const id = pathname.split("/")[2];
+  const { currentUser } = useContext(UserContext2);
+  // console.log(currentUser)
 
   useEffect(() => {
     axios.get(`http://localhost:8080/games/ById/${id}`).then((res) => {

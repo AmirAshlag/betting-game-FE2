@@ -1,15 +1,18 @@
 import "./Login.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { UserContext2 } from "../../Context/UserContext/UserContext";
 
 const Login = ({ setShowLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate()
+
+  const { setCurrentUser } = useContext(UserContext2);
 
   async function clickHandler() {
     setError(false);
@@ -24,7 +27,8 @@ const Login = ({ setShowLogin }) => {
         if (res.status == 200) {
           navigate('/')
         }
-        console.log(res);
+        console.log(res.data);
+        setCurrentUser(res.data)
         setEmail("");
         setPassword("");
       } catch (e) {

@@ -18,7 +18,7 @@ function App() {
           <Route path="/game/:id" element={<GameCard />} />
         </Routes>
       </BrowserRouter>
-    </UserContext>
+   </UserContext>
   );
 }
 
