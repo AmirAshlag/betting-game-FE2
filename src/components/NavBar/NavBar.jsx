@@ -6,7 +6,7 @@ import LogoutModal from "../LogoutModal/LogoutModal";
 
 export default function NavBar() {
   const location = useLocation();
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
 
   return (
     <Container>
@@ -22,13 +22,22 @@ export default function NavBar() {
               <Navbar.Brand>My Bets</Navbar.Brand>
             </Link>
           )}
-          {location.pathname != "/out" && <Navbar.Brand
-            onClick={() => {
-              setModal(true);
-            }}
-          >
-            Logout
-          </Navbar.Brand>}
+
+          {location.pathname === "/marketplace" ? null : (
+            <Link className="marketplace" to="/marketplace">
+              <Navbar.Brand>Marketplace</Navbar.Brand>
+            </Link>
+          )}
+
+          {location.pathname != "/out" && (
+            <Navbar.Brand
+              onClick={() => {
+                setModal(true);
+              }}
+            >
+              Logout
+            </Navbar.Brand>
+          )}
         </Container>
         {modal && <LogoutModal setModal={setModal} />}
       </Navbar>
