@@ -81,11 +81,12 @@ function BetModal({ overUnder, ratio, team, amount, setShowModal, id }) {
               Cancel
             </Button>
           )}
-          {!uploaded && (
-            <Button variant="primary" onClick={clickHandler}>
-              Upload
-            </Button>
-          )}
+          {!uploaded &&
+            !error &&(
+              <Button variant="primary" onClick={clickHandler}>
+                Upload
+              </Button>
+            )}
         </Modal.Footer>
       </Modal.Dialog>
     </div>
