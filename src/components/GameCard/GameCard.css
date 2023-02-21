@@ -66,8 +66,8 @@
     /* margin-left: 77%;
     margin-top: 10px; */
     position: absolute;
-    bottom: 15px;
-    right: 15px;
+    bottom: 170px;
+    right: 20px;
 }
 
 .top{
@@ -86,4 +86,19 @@
 
 .gamelist-headline{
   text-decoration: underline;
+}
+
+.description{
+  margin-bottom: 5px;
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 15px;
+  color: gray;
+}
+
+.select-team{
+  width: 120px;
+  margin-top: 5px;
+  height: 30px;
+  margin-left: 5px;
 }
