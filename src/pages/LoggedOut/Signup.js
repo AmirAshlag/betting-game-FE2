@@ -28,7 +28,6 @@ const Signup = ({ setShowLogin }) => {
         signUpInfo.password.length > 5
       ) {
         try {
-          console.log();
           const res = await axios.post(
             "http://localhost:8080/users/signup",
             signUpInfo
