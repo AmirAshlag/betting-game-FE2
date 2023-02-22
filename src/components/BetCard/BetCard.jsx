@@ -41,33 +41,30 @@ export default function BetCard({ bet }) {
           <span className="home-name">{game.teams.home.nickname}</span>
           <span className="visitors-name">{game.teams.visitors.nickname}</span>
           <Card.Body>
-            <br></br>
             <Card.Title className="bet-title2">{date}</Card.Title>
             <Card.Text>
-              {/* Some quick example text to build on the card title and make up the
-              bulk of the card's content. */}
               {bet.userOne.bet.overUnder < 0 && (
-                <div>
+                <span>
                   If the {bet.userOne.bet.winner} loses by more less then{" "}
                   {-bet.userOne.bet.overUnder} you will win{" "}
                   {bet.amount * bet.userOne.bet.ratio} else you will
                   lose {bet.amount}
-                </div>
+                </span>
               )}
               {bet.userOne.bet.overUnder > 0 && (
-                <div>
+                <span>
                   If the {bet.userOne.bet.winner} win by less then{" "}
                   {bet.userOne.bet.overUnder} or loses you will win{" "}
                   {bet.amount * bet.userOne.bet.ratio} else you will
                   lose {bet.amount}
-                </div>
+                </span>
               )}
               {bet.userOne.bet.overUnder === 0 && (
-                <div>
+                <span>
                   If the {bet.userOne.bet.winner} loses you will win{" "}
                   {bet.amount * bet.userOne.bet.ratio} else you will
                   lose {bet.amount}
-                </div>
+                </span>
               )}
             </Card.Text>
           </Card.Body>
