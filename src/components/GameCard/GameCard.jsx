@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { UserContext2 } from "../../Context/UserContext/UserContext";
 import BetModal from "../BetModal/BetModal";
-import { Ratio } from "react-bootstrap";
 
 function GameCard({ gameId }) {
   const [gameData, setGameData] = useState("");
@@ -15,8 +14,8 @@ function GameCard({ gameId }) {
   const [showModal, setShowModal] = useState(false);
   const [team, setTeam] = useState(false);
   const [amount, setAmount] = useState(false);
-  const [overUnder, setOverUnder] = useState(false)
-  const [ratio, setRatio] = useState(false);
+  const [overUnder, setOverUnder] = useState(0)
+  const [ratio, setRatio] = useState(0);
 
   const location = useLocation();
   const pathname = location.pathname;

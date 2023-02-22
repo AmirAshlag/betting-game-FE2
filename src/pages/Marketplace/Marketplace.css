@@ -1,0 +1,13 @@
+.bets-container{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.marketplace-body{
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(108, 107, 107);
+}

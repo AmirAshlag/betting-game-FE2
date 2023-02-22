@@ -27,7 +27,8 @@ function BetModal({ overUnder, ratio, team, amount, setShowModal, id }) {
         id: currentUser._id,
         bet: {
           winner: team,
-          overUnder: overUnder
+          overUnder: overUnder,
+          ratio: ratio
         },
       },
     };

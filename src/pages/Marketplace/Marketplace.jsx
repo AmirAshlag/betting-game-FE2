@@ -7,27 +7,36 @@ import { useState } from "react";
 
 const Marketplace = () => {
   const { currentUser } = useContext(UserContext2);
-  const [bets, setBets] = useState('')
+  const [bets, setBets] = useState("");
 
   useEffect(() => {
-    console.log(currentUser)
     if (currentUser) {
+      // console.log("2", currentUser)
       axios
         .get(`http://localhost:8080/bets/allBets/${currentUser._id}`)
         .then((res) => {
           console.log(res.data);
-          setBets(res.data)
+          setBets(res.data);
         });
     }
-  }, []);
+  }, [currentUser]);
 
-  useEffect(()=>{
-    console.log(bets)
-  },[bets])
+  useEffect(() => {
+    console.log(bets);
+  }, [bets]);
 
   return (
-    <div>
-      <BetCard />
+    <div className="marketplace-body">
+      <div className="bets-container">
+        {bets &&
+          bets.map((bet) => {
+            return (
+              <div key={bet._id}>
+                <BetCard bet={bet} />
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };
