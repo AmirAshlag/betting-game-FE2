@@ -10,12 +10,46 @@ export default function Home() {
   const [date, setDate] = useState(false);
   const [teams, setTeams] = useState([]);
   const [games, setGames] = useState("");
+  let nbaTeams = [
+    "Atlanta Hawks",
+    "Boston Celtics",
+    "Brooklyn Nets",
+    "Charlotte Hornets",
+    "Chicago Bulls",
+    "Cleveland Cavaliers",
+    "Dallas Mavericks",
+    "Denver Nuggets",
+    "Detroit Pistons",
+    "Golden State Warriors",
+    "Houston Rockets",
+    "Indiana Pacers",
+    "LA Clippers",
+    "Los Angeles Lakers",
+    "Memphis Grizzlies",
+    "Miami Heat",
+    "Milwaukee Bucks",
+    "Minnesota Timberwolves",
+    "New Orleans Pelicans",
+    "New York Knicks",
+    "Oklahoma City Thunder",
+    "Orlando Magic",
+    "Philadelphia 76ers",
+    "Phoenix Suns",
+    "Portland Trail Blazers",
+    "Sacramento Kings",
+    "San Antonio Spurs",
+    "Toronto Raptors",
+    "Utah Jazz",
+    "Washington Wizards",
+  ];
 
-  // useEffect(() => {
-  //   axios.get("http://localhost:8080/games/teams").then((res) => {
-  //     console.log(res.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetch("http://localhost:8080/games/teams")
+      .then((res) => res.json())
+      .then((data) => {
+        setTeams(data);
+      });
+  }, []);
 
   useEffect(() => {
     axios.get(`http://localhost:8080/games/ByDate/${date}`).then((res) => {
@@ -74,16 +108,18 @@ export default function Home() {
             </div>
 
             <Dropdown.Menu>
-              {/* {teams.map((team) => {
-                return (
-                  <Dropdown.Item
-                    key={team.id}
-                    onClick={() => getGamesPerTeam(team.id)}
-                  >
-                    {team.name || team.nickname}
-                  </Dropdown.Item>
-                );
-              })} */}
+              {teams
+                .filter((team) => nbaTeams.includes(team.name))
+                .map((team) => {
+                  return (
+                    <Dropdown.Item
+                      key={team.id}
+                      onClick={() => getGamesPerTeam(team.id)}
+                    >
+                      {team.name || team.nickname}
+                    </Dropdown.Item>
+                  );
+                })}
             </Dropdown.Menu>
           </div>
         </Dropdown>
