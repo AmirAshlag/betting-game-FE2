@@ -10,7 +10,7 @@ const Login = ({ setShowLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { setCurrentUser } = useContext(UserContext2);
 
@@ -24,11 +24,11 @@ const Login = ({ setShowLogin }) => {
           login,
           { withCredentials: true }
         );
-        if (res.status == 200) {
-          navigate('/')
+        if (res.status === 200) {
+          navigate("/");
         }
         console.log(res.data);
-        setCurrentUser(res.data)
+        setCurrentUser(res.data);
         setEmail("");
         setPassword("");
       } catch (e) {

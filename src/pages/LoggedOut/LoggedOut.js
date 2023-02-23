@@ -1,10 +1,10 @@
 import React from "react";
 import Signup from "./Signup";
-import Login from "./Login";
+import Login from "../Login/Login";
 import { useState } from "react";
 
-const LoggedOut = () => {
-  const [showLogin, setShowLogin] = useState(true)
+const LoginOrSignup = () => {
+  const [showLogin, setShowLogin] = useState(true);
   return (
     <div>
       {showLogin ? (
@@ -16,4 +16,4 @@ const LoggedOut = () => {
   );
 };
 
-export default LoggedOut;
+export default LoginOrSignup;

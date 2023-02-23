@@ -18,8 +18,12 @@ const UserContext = ({ children }) => {
     }
   }, []);
 
+  // const getUser = async () => {
+  //   fetch("http://localhost:8080/users/" + userId);
+  // };
+
   return (
-    <UserContext2.Provider value={{currentUser, setCurrentUser}}>
+    <UserContext2.Provider value={{ currentUser, setCurrentUser }}>
       {children}
     </UserContext2.Provider>
   );
