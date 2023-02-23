@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import { UserContext2 } from "../../Context/UserContext/UserContext";
 
 export const MyBets = () => {
+  const { currentUser } = useContext(UserContext2);
+
   return (
     <div className="myBet-container">
       <div className="title">
@@ -55,7 +58,7 @@ export const MyBets = () => {
         <h6>Lose Bets</h6>
         <ProgressBar variant="danger" now={80} />
         <h6>My Coins</h6>
-        <ProgressBar variant="info" now={1000} />
+        Total Coins: {currentUser?.coins || 0}
       </div>
     </div>
   );

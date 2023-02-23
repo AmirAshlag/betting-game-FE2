@@ -4,9 +4,35 @@ import GameList from "../../components/GameList/GameList";
 import "./Home.css";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import axios from "axios";
 
 export default function Home() {
   const [date, setDate] = useState("");
+  const [teams, setTeams] = useState([]);
+  const [games, setGames] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:8080/games/teams")
+      .then((res) => res.json())
+      .then((data) => {
+        setTeams(data);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   axios.get(`http://localhost:8080/games/ByDate/${date}`).then((res) => {
+  //     console.log(res.data.response);
+  //     setGames(res.data.response);
+  //   });
+  // }, [date]);
+
+  const getGamesPerTeam = (teamId) => {
+    fetch(`http://localhost:8080/games/teams/${teamId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setGames(data.response);
+      });
+  };
 
   return (
     <div className="homeContainer">
@@ -49,15 +75,45 @@ export default function Home() {
             </div>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">NBA</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Champions League</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Sport3</Dropdown.Item>
+              <Dropdown.Item>NBA</Dropdown.Item>
+              <Dropdown.Item>Champions League</Dropdown.Item>
+              <Dropdown.Item>Sport3</Dropdown.Item>
+            </Dropdown.Menu>
+          </div>
+        </Dropdown>
+      </div>
+      <div>
+        <Dropdown>
+          <div className="justify-content-md-center">
+            <div className="chooseSport">
+              <span className="chooseTitle">
+                <h5>Choose team</h5>
+              </span>
+              <span className="chooseButton">
+                <Dropdown.Toggle
+                  variant="success"
+                  id="dropdown-team"
+                ></Dropdown.Toggle>
+              </span>
+            </div>
+
+            <Dropdown.Menu>
+              {teams.map((team) => {
+                return (
+                  <Dropdown.Item
+                    key={team.id}
+                    onClick={() => getGamesPerTeam(team.id)}
+                  >
+                    {team.name || team.nickname}
+                  </Dropdown.Item>
+                );
+              })}
             </Dropdown.Menu>
           </div>
         </Dropdown>
       </div>
 
-      <div className="gameList">{date && <GameList date={date} />}</div>
+      <div className="gameList">{<GameList games={games} />}</div>
     </div>
   );
 }
