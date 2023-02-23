@@ -14,4 +14,13 @@
     /* border-radius: 10px;
     border: 1px solid rgb(0, 0, 0, 0.5);
     padding: 20px 50px; */
+    margin-top: 7px;
+}
+
+.gamelist-headline {
+  margin-left: 20%;
+}
+
+.gamelist-headline2 {
+  text-decoration: underline;
 }

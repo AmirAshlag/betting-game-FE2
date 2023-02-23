@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import GameCard from "../GameCard/GameCard";
 import axios from "axios";
-import "./GameList.css"
+import "./GameList.css";
 import { useNavigate } from "react-router-dom";
 
 export default function GameList({ games }) {
@@ -9,7 +9,7 @@ export default function GameList({ games }) {
 
   return (
     <div className="game-list">
-      <h2 className="gamelist-headline">
+      <h2 className={games.length ? "gamelist-headline" : "gamelist-headline2"}>
         {games.length ? "Game List" : "No Games"}
       </h2>
       {games &&
