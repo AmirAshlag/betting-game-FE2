@@ -72,3 +72,8 @@
 .game-list{
     margin-bottom: 20px;
 }
+
+html, body {
+  /* max-width: 95vw; */
+  overflow-x: hidden;
+}

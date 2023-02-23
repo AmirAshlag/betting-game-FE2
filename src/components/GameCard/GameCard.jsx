@@ -15,7 +15,7 @@ function GameCard({ gameId }) {
   const [team, setTeam] = useState(false);
   const [amount, setAmount] = useState(false);
   const [overUnder, setOverUnder] = useState(0)
-  const [ratio, setRatio] = useState(0);
+  const [ratio, setRatio] = useState(1);
 
   const location = useLocation();
   const pathname = location.pathname;

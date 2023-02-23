@@ -4,9 +4,18 @@ import GameList from "../../components/GameList/GameList";
 import "./Home.css";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import axios from "axios";
 
 export default function Home() {
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(false);
+   const [games, SetGames] = useState("");
+
+   useEffect(() => {
+     axios.get(`http://localhost:8080/games/ByDate/${date}`).then((res) => {
+       console.log(res.data.response);
+       SetGames(res.data.response);
+     });
+   }, [date]);
 
   return (
     <div className="homeContainer">
@@ -57,7 +66,9 @@ export default function Home() {
         </Dropdown>
       </div>
 
-      <div className="gameList">{date && <GameList date={date} />}</div>
+      <div className="gameList">
+        {date && <GameList date={date} games={games} />}
+      </div>
     </div>
   );
 }
