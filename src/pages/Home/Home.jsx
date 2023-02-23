@@ -59,29 +59,6 @@ export default function Home() {
           }}
         />
       </div>
-      <div className="chooseContainer">
-        <Dropdown>
-          <div className="justify-content-md-center">
-            <div className="chooseSport">
-              <span className="chooseTitle">
-                <h5>Sport Category</h5>
-              </span>
-              <span className="chooseButton">
-                <Dropdown.Toggle
-                  variant="success"
-                  id="dropdown-basic"
-                ></Dropdown.Toggle>
-              </span>
-            </div>
-
-            <Dropdown.Menu>
-              <Dropdown.Item>NBA</Dropdown.Item>
-              <Dropdown.Item>Champions League</Dropdown.Item>
-              <Dropdown.Item>Sport3</Dropdown.Item>
-            </Dropdown.Menu>
-          </div>
-        </Dropdown>
-      </div>
       <div>
         <Dropdown>
           <div className="justify-content-md-center">
