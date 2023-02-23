@@ -63,7 +63,7 @@ export default function Home() {
           <div className="justify-content-md-center">
             <div className="chooseSport">
               <span className="chooseTitle">
-                <h5>Choose team</h5>
+                <h5>Choose Team</h5>
               </span>
               <span className="chooseButton">
                 <Dropdown.Toggle
