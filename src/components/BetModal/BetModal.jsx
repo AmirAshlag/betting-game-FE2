@@ -6,36 +6,34 @@ import "./BetModal.css";
 import { useContext } from "react";
 import { UserContext2 } from "../../Context/UserContext/UserContext";
 
-function BetModal({ overUnder, ratio, team, amount, setShowModal, id }) {
+function BetModal({ overUnder, ratio, team, amount, setShowModal, gameData }) {
   const [error, seterror] = useState(false);
   const { currentUser } = useContext(UserContext2);
-  const [uploaded, setUploaded] = useState(false)
+  const [uploaded, setUploaded] = useState(false);
 
   useEffect(() => {
-    console.log(currentUser)
+    console.log(currentUser);
     if (!team || !amount) {
       seterror(true);
     }
   }, []);
 
-  function clickHandler(){
+  function clickHandler() {
     const bet = {
       type: "game score",
-      gameId: id,
       amount: amount,
-      userOne: {
-        id: currentUser._id,
-        bet: {
-          winner: team,
-          overUnder: overUnder,
-          ratio: ratio
-        },
+      userOneChoise: {
+        winner: team,
+        overUnder: overUnder,
+        ratio: ratio,
       },
+      userOne: currentUser._id,
+      game: gameData,
     };
-    axios.post("http://localhost:8080/bets", bet).then((res)=>{
-        console.log(res)
-        setUploaded(true)
-    })
+    axios.post("http://localhost:8080/bets", bet).then((res) => {
+      console.log(res);
+      setUploaded(true);
+    });
   }
 
   return (
@@ -53,19 +51,19 @@ function BetModal({ overUnder, ratio, team, amount, setShowModal, id }) {
           {!error && overUnder < 0 && (
             <div>
               If the {team} win or loses by less then {-overUnder} you will win{" "}
-              {amount} and your opponent will lose {amount * ratio}
+              {amount} else you will lose {amount * ratio}
             </div>
           )}
           {!error && overUnder > 0 && (
             <div>
               If the {team} win by more then {overUnder} you will win {amount}{" "}
-              and your opponent will lose {amount * ratio}
+              else you will lose {amount * ratio}
             </div>
           )}
           {!error && overUnder === 0 && (
             <div>
-              If the {team} win you will win {amount} and your opponent will
-              lose {amount * ratio}
+              If the {team} win you will win {amount} else you will lose{" "}
+              {amount * ratio}
             </div>
           )}
           {uploaded && <h5 className="bet-uploaded">Bet uploaded!</h5>}
@@ -82,12 +80,11 @@ function BetModal({ overUnder, ratio, team, amount, setShowModal, id }) {
               Cancel
             </Button>
           )}
-          {!uploaded &&
-            !error &&(
-              <Button variant="primary" onClick={clickHandler}>
-                Upload
-              </Button>
-            )}
+          {!uploaded && !error && (
+            <Button variant="primary" onClick={clickHandler}>
+              Upload
+            </Button>
+          )}
         </Modal.Footer>
       </Modal.Dialog>
     </div>

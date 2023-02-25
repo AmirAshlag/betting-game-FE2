@@ -6,64 +6,56 @@ import "./BetCard.css";
 import axios from "axios";
 
 export default function BetCard({ bet }) {
-  const [game, setGame] = useState("");
   const [date, setDate] = useState("");
 
   useEffect(() => {
-    console.log(bet);
-    axios.get(`http://localhost:8080/games/ById/${bet.gameId}`).then((res) => {
-      console.log(res.data.response[0]);
-      setGame(res.data.response[0]);
-      //   console.log(res.data.response[0].date.start);
-
-      const isoDate = res.data.response[0].date.start;
-      const date = new Date(isoDate);
-      const formattedDate = date.toISOString().split("T")[0];
-      setDate(formattedDate);
-    });
+    const isoDate = bet.game.date.start;
+    const date = new Date(isoDate);
+    const formattedDate = date.toISOString().split("T")[0];
+    setDate(formattedDate);
   }, []);
 
   return (
     <div>
-      {game && (
+      {date && (
         <Card style={{ width: "18rem" }} className="bet-card">
           <Card.Img
             variant="top-rigt"
-            src={game.teams.home.logo}
+            src={bet.game.teams.home.logo}
             className="img"
           />
           <span className="vs2">VS</span>
           <Card.Img
             variant="top-left"
-            src={game.teams.visitors.logo}
+            src={bet.game.teams.visitors.logo}
             className="img2"
           />
-          <span className="home-name">{game.teams.home.nickname}</span>
-          <span className="visitors-name">{game.teams.visitors.nickname}</span>
+          <span className="home-name">{bet.game.teams.home.nickname}</span>
+          <span className="visitors-name">{bet.game.teams.visitors.nickname}</span>
           <Card.Body>
             <Card.Title className="bet-title2">{date}</Card.Title>
             <Card.Text>
-              {bet.userOne.bet.overUnder < 0 && (
+              {bet.userOneChoise.overUnder < 0 && (
                 <span>
-                  If the {bet.userOne.bet.winner} loses by more less then{" "}
-                  {-bet.userOne.bet.overUnder} you will win{" "}
-                  {bet.amount * bet.userOne.bet.ratio} else you will
-                  lose {bet.amount}
+                  If the {bet.userOneChoise.winner} loses by more less then{" "}
+                  {-bet.userOneChoise.overUnder} you will win{" "}
+                  {bet.amount * bet.userOneChoise.ratio} else you will lose{" "}
+                  {bet.amount}
                 </span>
               )}
-              {bet.userOne.bet.overUnder > 0 && (
+              {bet.userOneChoise.overUnder > 0 && (
                 <span>
-                  If the {bet.userOne.bet.winner} win by less then{" "}
-                  {bet.userOne.bet.overUnder} or loses you will win{" "}
-                  {bet.amount * bet.userOne.bet.ratio} else you will
-                  lose {bet.amount}
+                  If the {bet.userOneChoise.winner} win by less then{" "}
+                  {bet.userOneChoise.overUnder} or loses you will win{" "}
+                  {bet.amount * bet.userOneChoise.ratio} else you will lose{" "}
+                  {bet.amount}
                 </span>
               )}
-              {bet.userOne.bet.overUnder === 0 && (
+              {bet.userOneChoise.overUnder === 0 && (
                 <span>
-                  If the {bet.userOne.bet.winner} loses you will win{" "}
-                  {bet.amount * bet.userOne.bet.ratio} else you will
-                  lose {bet.amount}
+                  If the {bet.userOneChoise.winner} loses you will win{" "}
+                  {bet.amount * bet.userOneChoise.ratio} else you will lose{" "}
+                  {bet.amount}
                 </span>
               )}
             </Card.Text>
@@ -81,16 +73,3 @@ export default function BetCard({ bet }) {
     </div>
   );
 }
-
-// {
-//   "type": "game score",
-// 	"gameId": 11872,
-//   "amount": 30,
-//   "userOne": {
-//     "id": "63e0f36c49d892861762ae6b",
-//     "bet": {
-//       "winner": "detroit pistons",
-// 			"overUnder": 9
-//     }
-//   }
-// }

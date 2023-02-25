@@ -8,13 +8,13 @@ import { useLocation } from "react-router-dom";
 import { UserContext2 } from "../../Context/UserContext/UserContext";
 import BetModal from "../BetModal/BetModal";
 
-function GameCard({ gameId }) {
+function GameCard() {
   const [gameData, setGameData] = useState("");
   const [bet, setbBet] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [team, setTeam] = useState(false);
   const [amount, setAmount] = useState(false);
-  const [overUnder, setOverUnder] = useState(0)
+  const [overUnder, setOverUnder] = useState(0);
   const [ratio, setRatio] = useState(1);
 
   const location = useLocation();
@@ -24,6 +24,7 @@ function GameCard({ gameId }) {
   useEffect(() => {
     axios.get(`http://localhost:8080/games/ById/${id}`).then((res) => {
       setGameData(res.data.response[0]);
+      // console.log("gamedada", res.data.response[0]);
     });
     console.log(id);
   }, []);
@@ -164,7 +165,11 @@ function GameCard({ gameId }) {
                         placeholder="bet ratio"
                         value={ratio}
                         onChange={(e) => {
-                          setRatio(e.target.value);
+                          if (e.target.value <= 0) {
+                            setRatio(1);
+                          } else {
+                            setRatio(e.target.value);
+                          }
                         }}
                       />
                     </div>
@@ -192,7 +197,7 @@ function GameCard({ gameId }) {
           team={team}
           overUnder={overUnder}
           setShowModal={setShowModal}
-          id = {gameData.id}
+          gameData={gameData}
         />
       )}
     </div>
