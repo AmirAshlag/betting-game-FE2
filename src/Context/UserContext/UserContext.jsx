@@ -15,6 +15,7 @@ const UserContext = ({ children }) => {
       const newUser = user.join("");
       console.log(JSON.parse(newUser));
       setCurrentUser(JSON.parse(newUser));
+      localStorage.setItem("id", JSON.parse(newUser)._id);
     }
   }, []);
 

@@ -23,7 +23,7 @@ export default function NavBar() {
             </Link>
           )}
 
-          {location.pathname === "/marketplace" ? null : (
+          {location.pathname === "/marketplace"? null : (
             <Link className="marketplace" to="/marketplace">
               <Navbar.Brand>Marketplace</Navbar.Brand>
             </Link>
