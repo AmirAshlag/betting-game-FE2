@@ -29,7 +29,7 @@ const Marketplace = () => {
     <div className="marketplace-body">
       <div className="bets-container">
         {bets &&
-          bets.map((bet) => {
+          bets.map((bet, index) => {
             return (
               <div key={bet._id}>
                 <BetCard bet={bet} />
