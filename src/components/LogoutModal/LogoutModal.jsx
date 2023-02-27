@@ -17,7 +17,7 @@ export default function LogOutModal({ setModal }) {
       .then(() => {
         localStorage.clear();
         setModal(false);
-        navigate("/out");
+        navigate("/login");
       });
   }
   return (
@@ -33,5 +33,4 @@ export default function LogOutModal({ setModal }) {
       </div>
     </div>
   );
-};
-
+}

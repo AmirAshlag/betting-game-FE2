@@ -21,13 +21,10 @@ const Marketplace = () => {
     }
   }, [currentUser]);
 
-  useEffect(() => {
-    console.log(bets);
-  }, [bets]);
-
   return (
     <div className="marketplace-body">
       <div className="bets-container">
+        {!currentUser && <h1>Log in to see the bets</h1>}
         {bets &&
           bets.map((bet) => {
             return (

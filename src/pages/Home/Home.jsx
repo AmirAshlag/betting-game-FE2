@@ -5,6 +5,7 @@ import "./Home.css";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from "axios";
+import WeeklyCalendar from "../../components/WeeklyCalendar/WeeklyCalendar";
 
 export default function Home() {
   const [date, setDate] = useState(false);
@@ -65,6 +66,7 @@ export default function Home() {
         const games = data.response;
 
         const today = new Date();
+        //////////////////////////////////////////////.  27 + 7 = 34
         const sevenDaysFromToday = new Date().setDate(today.getDate() + 7);
         const thisWeekGames = games.filter((game) => {
           const dateOfGame = new Date(game.date.start);
@@ -91,11 +93,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="calender">
-        <Calendar
+      <div className="calendar">
+        <WeeklyCalendar
           onClickDay={(e) => {
             setDate(e);
-            console.log(e);
           }}
         />
       </div>

@@ -34,6 +34,10 @@
   margin: 5vw 10vw 10px 7vw;
 }
 
+.homeContainer .calendar {
+  width: 90%;
+}
+
 .chooseContainer {
   display: flex;
   align-items: center;
@@ -69,6 +73,6 @@
   margin-left: 5px;
 }
 
-.game-list{
-    margin-bottom: 20px;
+.game-list {
+  margin-bottom: 20px;
 }

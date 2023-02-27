@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { UserContext2 } from "../../Context/UserContext/UserContext";
 import LogoutModal from "../LogoutModal/LogoutModal";
 
 export default function NavBar() {
   const location = useLocation();
   const [modal, setModal] = useState(false);
+  const { currentUser } = useContext(UserContext2);
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -29,13 +32,21 @@ export default function NavBar() {
             </Link>
           )}
 
-          {location.pathname != "/out" && (
+          {currentUser ? (
             <Navbar.Brand
               onClick={() => {
                 setModal(true);
               }}
             >
               Logout
+            </Navbar.Brand>
+          ) : (
+            <Navbar.Brand
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Login
             </Navbar.Brand>
           )}
         </Container>

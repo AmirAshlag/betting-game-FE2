@@ -11,8 +11,8 @@ export default function BetCard({ bet }) {
 
   useEffect(() => {
     console.log(bet);
-    axios.get(`http://localhost:8080/games/ById/${bet.gameId}`).then((res) => {
-      console.log(res.data.response[0]);
+    axios.get(`http://localhost:8080/games/ById/${bet.game.id}`).then((res) => {
+      console.log(res.data);
       setGame(res.data.response[0]);
       //   console.log(res.data.response[0].date.start);
 
@@ -21,7 +21,7 @@ export default function BetCard({ bet }) {
       const formattedDate = date.toISOString().split("T")[0];
       setDate(formattedDate);
     });
-  }, []);
+  }, [bet]);
 
   return (
     <div>
@@ -43,27 +43,27 @@ export default function BetCard({ bet }) {
           <Card.Body>
             <Card.Title className="bet-title2">{date}</Card.Title>
             <Card.Text>
-              {bet.userOne.bet.overUnder < 0 && (
+              {bet.userOneChoise.overUnder < 0 && (
                 <span>
-                  If the {bet.userOne.bet.winner} loses by more less then{" "}
-                  {-bet.userOne.bet.overUnder} you will win{" "}
-                  {bet.amount * bet.userOne.bet.ratio} else you will
-                  lose {bet.amount}
+                  If the {bet.userOneChoise.winner} loses by more less then{" "}
+                  {-bet.userOneChoise.overUnder} you will win{" "}
+                  {bet.amount * bet.userOneChoise.ratio} else you will lose{" "}
+                  {bet.amount}
                 </span>
               )}
-              {bet.userOne.bet.overUnder > 0 && (
+              {bet.userOneChoise.overUnder > 0 && (
                 <span>
-                  If the {bet.userOne.bet.winner} win by less then{" "}
-                  {bet.userOne.bet.overUnder} or loses you will win{" "}
-                  {bet.amount * bet.userOne.bet.ratio} else you will
-                  lose {bet.amount}
+                  If the {bet.userOneChoise.winner} win by less then{" "}
+                  {bet.userOneChoise.overUnder} or loses you will win{" "}
+                  {bet.amount * bet.userOneChoise.ratio} else you will lose{" "}
+                  {bet.amount}
                 </span>
               )}
-              {bet.userOne.bet.overUnder === 0 && (
+              {bet.userOneChoise.overUnder === 0 && (
                 <span>
-                  If the {bet.userOne.bet.winner} loses you will win{" "}
-                  {bet.amount * bet.userOne.bet.ratio} else you will
-                  lose {bet.amount}
+                  If the {bet.userOneChoise.winner} loses you will win{" "}
+                  {bet.amount * bet.userOneChoise.ratio} else you will lose{" "}
+                  {bet.amount}
                 </span>
               )}
             </Card.Text>
