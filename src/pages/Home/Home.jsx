@@ -62,7 +62,15 @@ export default function Home() {
     fetch(`http://localhost:8080/games/teams/${teamId}`)
       .then((res) => res.json())
       .then((data) => {
-        setGames(data.response);
+        const games = data.response;
+
+        const today = new Date();
+        const sevenDaysFromToday = new Date().setDate(today.getDate() + 7);
+        const thisWeekGames = games.filter((game) => {
+          const dateOfGame = new Date(game.date.start);
+          return dateOfGame >= today && dateOfGame < sevenDaysFromToday;
+        });
+        setGames(thisWeekGames);
       });
   };
 
