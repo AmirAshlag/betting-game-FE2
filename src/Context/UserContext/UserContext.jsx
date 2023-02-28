@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import axios from "axios";
+import { debounce } from "lodash";
 
 export const UserContext2 = createContext();
 
@@ -19,9 +21,16 @@ const UserContext = ({ children }) => {
     }
   }, []);
 
-  // const getUser = async () => {
-  //   fetch("http://localhost:8080/users/" + userId);
-  // };
+  const checkBets = debounce(()=>{
+    axios.get(`http://localhost:8080/bets/check/${currentUser._id}`);
+  },10000)
+
+  useEffect(()=>{
+    if(currentUser){
+      console.log("fired")
+      checkBets()
+    }
+  },[currentUser])
 
   return (
     <UserContext2.Provider value={{ currentUser, setCurrentUser }}>

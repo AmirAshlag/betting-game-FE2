@@ -9,8 +9,6 @@ import { UserContext2 } from "../../Context/UserContext/UserContext";
 import BetModal from "../BetModal/BetModal";
 import ScoresTable from "../Table/table";
 
-
-
 function GameCard() {
   const [gameData, setGameData] = useState("");
   const [bet, setbBet] = useState(false);

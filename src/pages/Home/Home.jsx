@@ -6,11 +6,14 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from "axios";
 import WeeklyCalendar from "../../components/WeeklyCalendar/WeeklyCalendar";
+import { Fade } from "react-bootstrap";
 export default function Home() {
   const [date, setDate] = useState(false);
+  const [teamScheduele, setTeamSchduele] = useState(false);
   const [teams, setTeams] = useState([]);
   const [games, setGames] = useState("");
   let nbaTeams = [
+    "All Teams",
     "Atlanta Hawks",
     "Boston Celtics",
     "Brooklyn Nets",
@@ -46,22 +49,27 @@ export default function Home() {
     fetch("http://localhost:8080/games/teams")
       .then((res) => res.json())
       .then((data) => {
-        setTeams(data);
+        setTeams([{ name: "All Teams", id: "hey" }, ...data]);
       });
   }, []);
-  useEffect(() => {
+
+  function getGamesByDate() {
     axios.get(`http://localhost:8080/games/ByDate/${date}`).then((res) => {
       console.log(res.data.response);
       setGames(res.data.response);
     });
+  }
+
+  useEffect(() => {
+    getGamesByDate();
   }, [date]);
+
   const getGamesPerTeam = (teamId) => {
     fetch(`http://localhost:8080/games/teams/${teamId}`)
       .then((res) => res.json())
       .then((data) => {
         const games = data.response;
         const today = new Date();
-        //////////////////////////////////////////////.  27 + 7 = 34
         const sevenDaysFromToday = new Date().setDate(today.getDate() + 7);
         const thisWeekGames = games.filter((game) => {
           const dateOfGame = new Date(game.date.start);
@@ -71,7 +79,7 @@ export default function Home() {
       });
   };
   return (
-    <div className="homeContainer">
+    <div>
       <h1 className="home-title">Betting Game</h1>
       <div className="welcomeBody">
         <h6>choose a game and start betting with your friends!</h6>
@@ -80,6 +88,7 @@ export default function Home() {
         <WeeklyCalendar
           onClickDay={(e) => {
             setDate(e);
+            setTeamSchduele(false);
           }}
         />
       </div>
@@ -104,7 +113,15 @@ export default function Home() {
                   return (
                     <Dropdown.Item
                       key={team.id}
-                      onClick={() => getGamesPerTeam(team.id)}
+                      onClick={() => {
+                        if (team.name == "All Teams") {
+                          getGamesByDate();
+                          setTeamSchduele(false);
+                        } else {
+                          getGamesPerTeam(team.id);
+                        }
+                        setTeamSchduele(team.name);
+                      }}
                     >
                       {team.name || team.nickname}
                     </Dropdown.Item>
@@ -114,7 +131,9 @@ export default function Home() {
           </div>
         </Dropdown>
       </div>
-      <div className="gameList">{<GameList games={games} />}</div>
+      <div className="gameList">
+        {<GameList games={games} teamScheduele={teamScheduele} date={date} />}
+      </div>
     </div>
   );
 }

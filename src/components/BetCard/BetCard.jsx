@@ -4,9 +4,14 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { Button } from "react-bootstrap";
 import "./BetCard.css";
 import axios from "axios";
+import { useContext } from "react";
+import { UserContext2 } from "../../Context/UserContext/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function BetCard({ bet }) {
   const [date, setDate] = useState("");
+  const { currentUser } = useContext(UserContext2);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const isoDate = bet.game.date.start;
@@ -15,8 +20,16 @@ export default function BetCard({ bet }) {
     setDate(formattedDate);
   }, []);
 
-  function takeBet(){
-
+  function takeBet() {
+    axios
+      .post("http://localhost:8080/bets/take", {
+        id: bet._id,
+        userTwoId: currentUser._id,
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate("/my-bets");
+      });
   }
 
   return (
@@ -35,7 +48,9 @@ export default function BetCard({ bet }) {
             className="img2"
           />
           <span className="home-name">{bet.game.teams.home.nickname}</span>
-          <span className="visitors-name">{bet.game.teams.visitors.nickname}</span>
+          <span className="visitors-name">
+            {bet.game.teams.visitors.nickname}
+          </span>
           <Card.Body>
             <Card.Title className="bet-title2">{date}</Card.Title>
             <Card.Text>

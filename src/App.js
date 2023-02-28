@@ -6,7 +6,6 @@ import { MyBets } from "./pages/MyBets/MyBets";
 import NavBar from "./components/NavBar/NavBar";
 import GameCard from "./components/GameCard/GameCard";
 import UserContext from "./Context/UserContext/UserContext";
-import Login from "./pages/Login/Login";
 
 function App() {
   return (
