@@ -72,20 +72,9 @@ export default function Home() {
   };
   return (
     <div className="homeContainer">
-      <div className="homeTitles">
-        <div className="header">
-          <h1 className="home-title">Betting Game</h1>
-        </div>
-        <div className="expSection">
-          <div className="welcomeTitle">
-            <h5>Welcome to Bet Game!</h5>
-          </div>
-          <div className="welcomeBody">
-            <h6>
-              choose your favorite sport and start betting with your friends!
-            </h6>
-          </div>
-        </div>
+      <h1 className="home-title">Betting Game</h1>
+      <div className="welcomeBody">
+        <h6>choose a game and start betting with your friends!</h6>
       </div>
       <div className="calendar">
         <WeeklyCalendar

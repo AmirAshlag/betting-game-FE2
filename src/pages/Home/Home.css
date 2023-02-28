@@ -31,7 +31,9 @@
 }
 
 .welcomeBody {
-  margin: 5vw 10vw 10px 7vw;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+  padding: 0px 10vw;
 }
 
 .homeContainer .calendar {
@@ -89,6 +91,7 @@ body {
 
 .home-title {
   margin-right: 20px;
+  margin-top: 20px;
 }
 
 .drop {
@@ -96,6 +99,6 @@ body {
   overflow-y: scroll;
 }
 
-.drop-container{
+.drop-container {
   margin-top: 15px;
 }
