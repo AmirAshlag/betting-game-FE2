@@ -12,6 +12,7 @@ export default function Home() {
   const [teams, setTeams] = useState([]);
   const [games, setGames] = useState("");
   let nbaTeams = [
+    "All Teams",
     "Atlanta Hawks",
     "Boston Celtics",
     "Brooklyn Nets",
