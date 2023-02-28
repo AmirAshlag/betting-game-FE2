@@ -81,16 +81,3 @@ export default function BetCard({ bet }) {
     </div>
   );
 }
-
-// {
-//   "type": "game score",
-// 	"gameId": 11872,
-//   "amount": 30,
-//   "userOne": {
-//     "id": "63e0f36c49d892861762ae6b",
-//     "bet": {
-//       "winner": "detroit pistons",
-// 			"overUnder": 9
-//     }
-//   }
-// }
