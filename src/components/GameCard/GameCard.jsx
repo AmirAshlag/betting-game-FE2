@@ -7,6 +7,9 @@ import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { UserContext2 } from "../../Context/UserContext/UserContext";
 import BetModal from "../BetModal/BetModal";
+import ScoresTable from "../Table/table";
+
+
 
 function GameCard() {
   const [gameData, setGameData] = useState("");
@@ -16,6 +19,7 @@ function GameCard() {
   const [amount, setAmount] = useState(false);
   const [overUnder, setOverUnder] = useState(0);
   const [ratio, setRatio] = useState(1);
+  const [date, setDate] = useState("");
 
   const location = useLocation();
   const pathname = location.pathname;
@@ -24,182 +28,201 @@ function GameCard() {
   useEffect(() => {
     axios.get(`http://localhost:8080/games/ById/${id}`).then((res) => {
       setGameData(res.data.response[0]);
-      // console.log("gamedada", res.data.response[0]);
+      // console.log("gamedata", res.data.response[0]);
     });
     console.log(id);
   }, []);
 
   useEffect(() => {
-    console.log(gameData);
+    if (gameData) {
+      const dateString = gameData.date.start;
+      const date = new Date(dateString);
+
+      const year = date.getUTCFullYear();
+      const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+      const day = String(date.getUTCDate()).padStart(2, "0");
+
+      const formattedDate = `${day}-${month}-${year}`;
+      setDate(formattedDate);
+      console.log(gameData);
+    }
   }, [gameData]);
 
   return (
-    <div
-      className="modal show"
-      style={{ display: "block", position: "initial" }}
-    >
-      <Modal.Dialog>
-        <Modal.Header>
-          <Modal.Title>NBA: 2023-02-11</Modal.Title>
-        </Modal.Header>
+    <div className="gamecard-body">
+      <div
+        className="modal show"
+        style={{ display: "block", position: "initial" }}
+      >
+        <Modal.Dialog>
+          <Modal.Header>
+            <Modal.Title>NBA: {date && date}</Modal.Title>
+          </Modal.Header>
 
-        <Modal.Body className="modal-body">
-          {gameData && (
-            <div className="games-container">
-              <div className="team-data">
-                <img
-                  src={gameData.teams.home.logo}
-                  alt="not available"
-                  className="team-logo"
-                />
-                <div className="name-flex">
-                  <div className="team-name">{gameData.teams.home.name}</div>
+          <Modal.Body className="modal-body">
+            {gameData && (
+              <div className="games-container">
+                <div className="team-data">
+                  <img
+                    src={gameData.teams.home.logo}
+                    alt="not available"
+                    className="team-logo"
+                  />
+                  <div className="name-flex">
+                    <div className="team-name2">
+                      {gameData.teams.home.nickname}
+                    </div>
+                  </div>
+                  <div className="team-score">
+                    {gameData.scores.home.points
+                      ? gameData.scores.home.points
+                      : 0}
+                  </div>
                 </div>
-                <div className="team-score">
-                  {gameData.scores.home.points
-                    ? gameData.scores.home.points
-                    : 0}
+                <div className="vs">VS</div>
+                <div className="team-data">
+                  <img
+                    src={gameData.teams.visitors.logo}
+                    alt="not available"
+                    className="team-logo"
+                  />
+                  <div className="name-flex">
+                    <div className="team-name">
+                      {gameData.teams.visitors.nickname}
+                    </div>
+                  </div>
+                  <div className="team-score">
+                    {gameData.scores.visitors.points
+                      ? gameData.scores.visitors.points
+                      : 0}
+                  </div>
                 </div>
               </div>
-              <div className="vs">VS</div>
-              <div className="team-data">
-                <img
-                  src={gameData.teams.visitors.logo}
-                  alt="not available"
-                  className="team-logo"
-                />
-                <div className="name-flex">
-                  <div className="team-name">
-                    {gameData.teams.visitors.name}
-                  </div>
-                </div>
-                <div className="team-score">
-                  {gameData.scores.visitors.points
-                    ? gameData.scores.visitors.points
-                    : 0}
-                </div>
+            )}
+          </Modal.Body>
+          {gameData && gameData.status.long == "Finished" && (
+            <ScoresTable gameData={gameData} />
+          )}
+          <Modal.Footer>
+            {!bet && gameData && gameData.status.long == "Scheduled" && (
+              <div>
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    setbBet(!bet);
+                  }}
+                >
+                  Create bet
+                </Button>
               </div>
-            </div>
-          )}
-        </Modal.Body>
-
-        <Modal.Footer>
-          {!bet && gameData && gameData.status.long == "Scheduled" && (
-            <div>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  setbBet(!bet);
-                }}
-              >
-                Create bet
-              </Button>
-            </div>
-          )}
-        </Modal.Footer>
-        {!showModal && bet && (
-          <motion.div layout className={bet ? "bet" : "bet-none"}>
-            <motion.div className="bet-title">New bet</motion.div>
-            <motion.div className="bet-container">
-              <form>
-                <div className="row">
-                  <div className="col">
-                    <span className="description">select your team</span>
-                    <select
-                      className="select-team"
-                      value={team}
-                      onChange={(e) => {
-                        setTeam(e.target.value);
-                      }}
-                    >
-                      <option value={false}>select team</option>
-                      <option value={gameData.teams.home.name}>
-                        {gameData.teams.home.nickname}
-                      </option>
-                      <option value={gameData.teams.visitors.name}>
-                        {gameData.teams.visitors.nickname}
-                      </option>
-                    </select>
-                  </div>
-                  <div className="col">
-                    <span className="description">Over under (optional)</span>
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="select over under"
-                      min={-50}
-                      max={50}
-                      step={1}
-                      value={overUnder}
-                      onChange={(e) => {
-                        setOverUnder(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="top">
+            )}
+          </Modal.Footer>
+          {!showModal && bet && (
+            <motion.div layout className={bet ? "bet" : "bet-none"}>
+              <motion.div className="bet-title">New bet</motion.div>
+              <motion.div className="bet-container">
+                <form>
                   <div className="row">
                     <div className="col">
-                      <span className="description">select bet amount</span>
-                      <input
-                        type="number"
-                        className="form-control"
-                        placeholder="amount"
-                        min={10}
-                        max={1000}
-                        step={5}
-                        value={amount}
+                      <span className="description">select your team</span>
+                      <select
+                        className="select-team"
+                        value={team}
                         onChange={(e) => {
-                          setAmount(e.target.value);
+                          setTeam(e.target.value);
                         }}
-                      />
+                      >
+                        <option value={false}>select team</option>
+                        <option value={gameData.teams.home.name}>
+                          {gameData.teams.home.nickname}
+                        </option>
+                        <option value={gameData.teams.visitors.name}>
+                          {gameData.teams.visitors.nickname}
+                        </option>
+                      </select>
                     </div>
                     <div className="col">
-                      <span className="description">bet ratio (optional)</span>
+                      <span className="description">Over under (optional)</span>
                       <input
-                        min={0.1}
-                        max={10}
-                        step={0.1}
                         type="number"
                         className="form-control"
-                        placeholder="bet ratio"
-                        value={ratio}
+                        placeholder="select over under"
+                        min={-50}
+                        max={50}
+                        step={1}
+                        value={overUnder}
                         onChange={(e) => {
-                          if (e.target.value <= 0) {
-                            setRatio(1);
-                          } else {
-                            setRatio(e.target.value);
-                          }
+                          setOverUnder(e.target.value);
                         }}
                       />
                     </div>
                   </div>
-                </div>
-              </form>
+                  <div className="top">
+                    <div className="row">
+                      <div className="col">
+                        <span className="description">select bet amount</span>
+                        <input
+                          type="number"
+                          className="form-control"
+                          placeholder="amount"
+                          min={10}
+                          max={1000}
+                          step={5}
+                          value={amount}
+                          onChange={(e) => {
+                            setAmount(e.target.value);
+                          }}
+                        />
+                      </div>
+                      <div className="col">
+                        <span className="description">
+                          bet ratio (optional)
+                        </span>
+                        <input
+                          min={0.1}
+                          max={10}
+                          step={0.1}
+                          type="number"
+                          className="form-control"
+                          placeholder="bet ratio"
+                          value={ratio}
+                          onChange={(e) => {
+                            if (e.target.value <= 0) {
+                              setRatio(1);
+                            } else {
+                              setRatio(e.target.value);
+                            }
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </motion.div>
+              <Button
+                variant="primary"
+                className="submit-bet"
+                onClick={() => {
+                  setShowModal(true);
+                }}
+              >
+                Upload bet
+              </Button>
             </motion.div>
-            <Button
-              variant="primary"
-              className="submit-bet"
-              onClick={() => {
-                setShowModal(true);
-              }}
-            >
-              Upload bet
-            </Button>
-          </motion.div>
+          )}
+        </Modal.Dialog>
+        {showModal && (
+          <BetModal
+            className="bet-modal"
+            ratio={ratio}
+            amount={amount}
+            team={team}
+            overUnder={overUnder}
+            setShowModal={setShowModal}
+            gameData={gameData}
+          />
         )}
-      </Modal.Dialog>
-      {showModal && (
-        <BetModal
-          className="bet-modal"
-          ratio={ratio}
-          amount={amount}
-          team={team}
-          overUnder={overUnder}
-          setShowModal={setShowModal}
-          gameData={gameData}
-        />
-      )}
+      </div>
     </div>
   );
 }

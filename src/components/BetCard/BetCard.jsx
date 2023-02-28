@@ -15,6 +15,10 @@ export default function BetCard({ bet }) {
     setDate(formattedDate);
   }, []);
 
+  function takeBet(){
+
+  }
+
   return (
     <div>
       {date && (
@@ -66,7 +70,7 @@ export default function BetCard({ bet }) {
             <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
           </ListGroup> */}
           <Card.Body>
-            <Button>Take bet</Button>
+            <Button onClick={takeBet}>Take bet</Button>
           </Card.Body>
         </Card>
       )}

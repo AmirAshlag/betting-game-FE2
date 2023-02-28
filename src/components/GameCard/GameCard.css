@@ -1,13 +1,26 @@
 .team-logo {
-  height: 130px;
-  max-width: 180px;
+  height: 100px;
+  max-width: 155px;
 }
 
 .team-name {
   max-width: fit-content;
   font-size: 13px;
   font-weight: bold;
+  font-size: large;
   margin-top: 10px;
+  /* margin-left: 15%; */
+}
+
+.team-name2 {
+  max-width: fit-content;
+  font-size: 13px;
+  font-weight: bold;
+  font-size: large;
+  margin-top: 10px;
+  margin-left: 9%;
+  max-height: 30px;
+  overflow-y: hidden;
 }
 
 .modal-body {
@@ -30,8 +43,10 @@
 
 .vs {
   font-weight: bold;
-  font-size: 40px;
-  margin-top: 50px;
+  font-size: 38px;
+  margin-top: 40px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .name-flex {
@@ -101,4 +116,10 @@
   margin-top: 5px;
   height: 30px;
   margin-left: 5px;
+}
+
+.gamecard-body{
+    width: 100%;
+    height: 87vh;
+    background-color: rgb(108, 107, 107);
 }

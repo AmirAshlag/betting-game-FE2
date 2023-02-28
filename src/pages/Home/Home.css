@@ -69,11 +69,22 @@
   margin-left: 5px;
 }
 
-.game-list{
-    margin-bottom: 20px;
+.game-list {
+  margin-bottom: 20px;
 }
 
-html, body {
+html,
+body {
   /* max-width: 95vw; */
   overflow-x: hidden;
 }
+
+.calender {
+  margin-top: 10px;
+}
+
+.home-title {
+  margin-right: 2%;
+  margin-top: 10px;
+}
+

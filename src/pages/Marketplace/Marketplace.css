@@ -22,7 +22,7 @@
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
     margin-left: 43%;
-    margin-top: 30px;
+    /* margin-bottom: 130px; */
     }
 
     @keyframes rotation {

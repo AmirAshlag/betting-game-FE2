@@ -9,11 +9,7 @@ export default function Home() {
   const [date, setDate] = useState(false);
   const [teams, setTeams] = useState([]);
   const [games, setGames] = useState("");
-  // useEffect(() => {
-  //   axios.get("http://localhost:8080/games/teams").then((res) => {
-  //     console.log(res.data);
-  //   });
-  // }, []);
+
   useEffect(() => {
     axios.get(`http://localhost:8080/games/ByDate/${date}`).then((res) => {
       console.log(res.data.response);
@@ -29,21 +25,11 @@ export default function Home() {
   };
   return (
     <div className="homeContainer">
-      <div className="homeTitles">
-        <div className="header">
-          <h1>Bet Game</h1>
-        </div>
-        <div className="expSection">
-          <div className="welcomeTitle">
-            <h5>Welcome to Bet Game!</h5>
-          </div>
-          <div className="welcomeBody">
-            <h6>
-              choose your favorite sport and start betting with your friends!
-            </h6>
-          </div>
-        </div>
-      </div>
+      <h1 className="home-title">Betting Game</h1>
+      <h6>
+        choose a game and start
+        <br /> betting with your friends!
+      </h6>
       <div className="calender">
         <Calendar
           onClickDay={(e) => {
@@ -52,7 +38,7 @@ export default function Home() {
           }}
         />
       </div>
-      <div>
+      {/* <div>
         <Dropdown>
           <div className="justify-content-md-center">
             <div className="chooseSport">
@@ -67,7 +53,7 @@ export default function Home() {
               </span>
             </div>
             <Dropdown.Menu>
-              {/* {teams.map((team) => {
+              {teams.map((team) => {
                 return (
                   <Dropdown.Item
                     key={team.id}
@@ -76,11 +62,11 @@ export default function Home() {
                     {team.name || team.nickname}
                   </Dropdown.Item>
                 );
-              })} */}
+              })}
             </Dropdown.Menu>
           </div>
         </Dropdown>
-      </div>
+      </div> */}
       <div className="gameList">{<GameList games={games} />}</div>
     </div>
   );
