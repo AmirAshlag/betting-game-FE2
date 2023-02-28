@@ -94,7 +94,7 @@ export default function Home() {
           }}
         />
       </div>
-      <div>
+      <div className="drop-container">
         <Dropdown>
           <div className="justify-content-md-center">
             <div className="chooseSport">
@@ -103,12 +103,12 @@ export default function Home() {
               </span>
               <span className="chooseButton">
                 <Dropdown.Toggle
-                  variant="success"
+                  variant="primary"
                   id="dropdown-team"
                 ></Dropdown.Toggle>
               </span>
             </div>
-            <Dropdown.Menu>
+            <Dropdown.Menu className="drop">
               {teams
                 .filter((team) => nbaTeams.includes(team.name))
                 .map((team) => {
