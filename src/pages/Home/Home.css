@@ -34,6 +34,10 @@
   margin: 5vw 10vw 10px 7vw;
 }
 
+.homeContainer .calendar {
+  width: 90%;
+}
+
 .chooseContainer {
   display: flex;
   align-items: center;
@@ -84,7 +88,6 @@ body {
 }
 
 .home-title {
-  margin-right: 2%;
-  margin-top: 10px;
+  margin-right: 20px;
 }
 
