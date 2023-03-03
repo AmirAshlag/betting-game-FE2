@@ -8,6 +8,7 @@ import './MyBets.css'
 export const MyBets = () => {
   const [user, setUser] = useState("");
   const [recentBets, setRecentBets] = useState("");
+  const [futureBets, setFutureBets] = useState("");
   const { currentUser } = useContext(UserContext2);
 
   useEffect(() => {
@@ -36,6 +37,16 @@ export const MyBets = () => {
           console.log(res.data);
           setRecentBets(res.data);
         });
+        axios
+          .get(
+            `http://localhost:8080/bets/future/${
+              currentUser ? currentUser._id : id
+            }`
+          )
+          .then((res) => {
+            console.log(res.data);
+            setFutureBets(res.data);
+          });
     } catch (e) {
       console.log(e);
     }
@@ -43,14 +54,14 @@ export const MyBets = () => {
 
   return (
     <div className="myBet-container">
-      <div className="title">
-        {user && <h1 className="center-title">{user.userName}</h1>}
-      </div>
+      <div className="center-title">{user && <h1>{user.userName}</h1>}</div>
+      <div className="center-title">{user && <h5>coins: {user.coins}</h5>}</div>
       <h4 className="data-title">Bets history</h4>
       <UserBetsData bets={recentBets} user={user} />
-      <br />
+      <h4 className="data-title">Future bets</h4>
+      <UserBetsData bets={futureBets} user={user} />
 
-      <div className="balance-sheets">
+      {/* <div className="balance-sheets">
         <h6>Coins won vs lost</h6>
         <ProgressBar
           variant="success"
@@ -74,7 +85,7 @@ export const MyBets = () => {
         <br></br>
         <h6>My Coins</h6>
         Total Coins: {user?.coins || 0}
-      </div>
+      </div> */}
     </div>
   );
 };
