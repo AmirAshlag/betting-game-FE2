@@ -21,16 +21,18 @@ const UserContext = ({ children }) => {
     }
   }, []);
 
-  const checkBets = debounce(()=>{
-    axios.get(`http://localhost:8080/bets/check/${currentUser._id}`);
-  },10000)
+  const checkBets = debounce(() => {
+    axios.get(`http://localhost:8080/bets/check/${currentUser._id}`).then((res)=>{
+      console.log(res)
+    })
+  }, 100000);
 
-  useEffect(()=>{
-    if(currentUser){
-      console.log("fired")
-      checkBets()
+  useEffect(() => {
+    if (currentUser) {
+      console.log("fired");
+      checkBets();
     }
-  },[currentUser])
+  }, [currentUser]);
 
   return (
     <UserContext2.Provider value={{ currentUser, setCurrentUser }}>

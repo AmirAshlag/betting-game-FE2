@@ -23,7 +23,7 @@ export default function BetCard({ bet }) {
   function takeBet() {
     axios
       .post("http://localhost:8080/bets/take", {
-        id: bet._id,
+        bet: bet,
         userTwoId: currentUser._id,
       })
       .then((res) => {

@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import GameCard from "../GameCard/GameCard";
-import axios from "axios";
 import "./GameList.css";
 import { useNavigate } from "react-router-dom";
 
