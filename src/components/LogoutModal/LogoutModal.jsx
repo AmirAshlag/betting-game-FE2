@@ -1,9 +1,12 @@
 import "./LogoutModal.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { UserContext2 } from "../../Context/UserContext/UserContext";
+import { useContext } from "react";
 
 export default function LogOutModal({ setModal }) {
   const navigate = useNavigate();
+  const { setCurrentUser } = useContext(UserContext2);
 
   function closeModal() {
     setModal(false);
@@ -17,7 +20,8 @@ export default function LogOutModal({ setModal }) {
       .then(() => {
         localStorage.clear();
         setModal(false);
-        navigate("/login");
+        setCurrentUser("")
+        navigate("/");
       });
   }
   return (

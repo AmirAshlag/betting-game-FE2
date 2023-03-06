@@ -50,13 +50,14 @@ function BetModal({ overUnder, ratio, team, amount, setShowModal, gameData }) {
           {error && <div>please enter team and amount</div>}
           {!error && overUnder < 0 && (
             <div>
-              If the {team} win or loses by less then {-overUnder} you will win{" "}
-              {amount} else you will lose {amount * ratio}
+              If the {team} win or loses by {-overUnder} or by less then{" "}
+              {-overUnder} you will win {amount} else you will lose{" "}
+              {amount * ratio}
             </div>
           )}
           {!error && overUnder > 0 && (
             <div>
-              If the {team} win by more then {overUnder} you will win {amount}{" "}
+              If the {team} win by {overUnder} or more you will win {amount}{" "}
               else you will lose {amount * ratio}
             </div>
           )}

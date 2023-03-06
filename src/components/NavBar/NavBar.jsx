@@ -14,12 +14,12 @@ export default function NavBar() {
 
   return (
     <div>
-      {true && (
+      {currentUser && (
         <Container className="mynav">
           <Navbar expand="lg" variant="light" bg="light">
             <Container>
-              {location.pathname === "/" ? null : (
-                <Link className="nav-link" to="/">
+              {location.pathname === "/home" ? null : (
+                <Link className="nav-link" to="/home">
                   <Navbar.Brand>Home</Navbar.Brand>
                 </Link>
               )}

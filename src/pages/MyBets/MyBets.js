@@ -3,12 +3,13 @@ import React, { useEffect, useState, useContext } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import UserBetsData from "../../components/UserBetsData/UserBetsData";
 import { UserContext2 } from "../../Context/UserContext/UserContext";
-import './MyBets.css'
+import "./MyBets.css";
 
 export const MyBets = () => {
   const [user, setUser] = useState("");
   const [recentBets, setRecentBets] = useState("");
   const [futureBets, setFutureBets] = useState("");
+  const [pendingBets, setPendingBets] = useState("");
   const { currentUser } = useContext(UserContext2);
 
   useEffect(() => {
@@ -34,19 +35,29 @@ export const MyBets = () => {
           }`
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setRecentBets(res.data);
         });
-        axios
-          .get(
-            `http://localhost:8080/bets/future/${
-              currentUser ? currentUser._id : id
-            }`
-          )
-          .then((res) => {
-            console.log(res.data);
-            setFutureBets(res.data);
-          });
+      axios
+        .get(
+          `http://localhost:8080/bets/future/${
+            currentUser ? currentUser._id : id
+          }`
+        )
+        .then((res) => {
+          // console.log(res.data);
+          setFutureBets(res.data);
+        });
+      axios
+        .get(
+          `http://localhost:8080/bets/futureTaken/${
+            currentUser ? currentUser._id : id
+          }`
+        )
+        .then((res) => {
+          // console.log(res.data);
+          setPendingBets(res.data);
+        });
     } catch (e) {
       console.log(e);
     }
@@ -58,6 +69,8 @@ export const MyBets = () => {
       <div className="center-title">{user && <h5>coins: {user.coins}</h5>}</div>
       <h4 className="data-title">Bets history</h4>
       <UserBetsData bets={recentBets} user={user} />
+      <h4 className="data-title">Bets Pending</h4>
+      <UserBetsData bets={pendingBets} user={user} />
       <h4 className="data-title">Bets uploaded</h4>
       <UserBetsData bets={futureBets} user={user} />
 

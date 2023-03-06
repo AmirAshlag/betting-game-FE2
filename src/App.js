@@ -6,19 +6,47 @@ import { MyBets } from "./pages/MyBets/MyBets";
 import NavBar from "./components/NavBar/NavBar";
 import GameCard from "./components/GameCard/GameCard";
 import UserContext from "./Context/UserContext/UserContext";
+import UserRoute from "./components/NavBar/UserRoute";
 
 function App() {
-
   return (
     <UserContext>
       <BrowserRouter>
-       { <NavBar />}
+        {<NavBar />}
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/my-bets" element={<MyBets />}></Route>
-          <Route path="/marketplace" element={<Marketplace />}></Route>
-          <Route path="/login" element={<LoginOrSignup />} />
-          <Route path="/game/:id" element={<GameCard />} />
+          <Route
+            path="/home"
+            element={
+              <UserRoute>
+                <Home />
+              </UserRoute>
+            }
+          ></Route>
+          <Route
+            path="/my-bets"
+            element={
+              <UserRoute>
+                <MyBets />
+              </UserRoute>
+            }
+          ></Route>
+          <Route
+            path="/marketplace"
+            element={
+              <UserRoute>
+                <Marketplace />
+              </UserRoute>
+            }
+          ></Route>
+          <Route path="/" element={<LoginOrSignup />} />
+          <Route
+            path="/game/:id"
+            element={
+              <UserRoute>
+                <GameCard />
+              </UserRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </UserContext>

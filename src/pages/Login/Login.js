@@ -25,7 +25,7 @@ const Login = ({ setShowLogin }) => {
           { withCredentials: true }
         );
         if (res.status === 200) {
-          navigate("/");
+          navigate("/home");
         }
         console.log(res.data);
         setCurrentUser(res.data);

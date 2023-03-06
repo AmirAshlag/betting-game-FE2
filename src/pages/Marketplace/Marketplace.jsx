@@ -74,7 +74,7 @@ const Marketplace = () => {
     <div className="marketplace-body">
       <div className="bets-container">
         {bets.length &&
-          bets.map((bet, index) => {
+          bets.map((bet) => {
             return (
               <div key={bet._id}>
                 <BetCard bet={bet} />
