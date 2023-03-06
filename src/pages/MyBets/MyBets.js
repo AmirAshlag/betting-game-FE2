@@ -58,7 +58,7 @@ export const MyBets = () => {
       <div className="center-title">{user && <h5>coins: {user.coins}</h5>}</div>
       <h4 className="data-title">Bets history</h4>
       <UserBetsData bets={recentBets} user={user} />
-      <h4 className="data-title">Future bets</h4>
+      <h4 className="data-title">Bets uploaded</h4>
       <UserBetsData bets={futureBets} user={user} />
 
       {/* <div className="balance-sheets">

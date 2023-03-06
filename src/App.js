@@ -8,10 +8,11 @@ import GameCard from "./components/GameCard/GameCard";
 import UserContext from "./Context/UserContext/UserContext";
 
 function App() {
+
   return (
     <UserContext>
       <BrowserRouter>
-        <NavBar />
+       { <NavBar />}
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/my-bets" element={<MyBets />}></Route>
