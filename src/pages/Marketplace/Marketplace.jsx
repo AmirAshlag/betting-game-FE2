@@ -45,6 +45,7 @@ const Marketplace = () => {
     }
   }, 200);
 
+
   const updateIndexes = debounce(() => {
     startIndex.current += 2;
     endIndex.current += 2;

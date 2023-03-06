@@ -56,7 +56,7 @@ export default function BetCard({ bet }) {
             <Card.Text>
               {bet.userOneChoise.overUnder < 0 && (
                 <span>
-                  If the {bet.userOneChoise.winner} loses by more less then{" "}
+                  If the {bet.userOneChoise.winner} loses by more then{" "}
                   {-bet.userOneChoise.overUnder} you will win{" "}
                   {bet.amount * bet.userOneChoise.ratio} else you will lose{" "}
                   {bet.amount}
