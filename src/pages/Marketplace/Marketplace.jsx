@@ -15,7 +15,7 @@ const Marketplace = () => {
   const id = useRef("");
   const betsList = useRef([]);
 
-  const getBets = debounce(()=>{
+  const getBets = debounce(() => {
     setLoader(true);
     if (id.current) {
       // console.log(id.current);
@@ -43,14 +43,14 @@ const Marketplace = () => {
           setLoader(false);
         });
     }
-  }, 200)
+  }, 200);
 
-  const updateIndexes = debounce(()=>{
+  const updateIndexes = debounce(() => {
     startIndex.current += 2;
     endIndex.current += 2;
     console.log(startIndex.current, endIndex.current);
     getBets();
-  }, 200)
+  }, 200);
 
   useEffect(() => {
     id.current = localStorage.getItem("id");
@@ -62,9 +62,9 @@ const Marketplace = () => {
       console.log("height", e.target.documentElement.scrollHeight);
       if (
         window.innerHeight + e.target.documentElement.scrollTop >=
-          e.target.documentElement.scrollHeight
+        e.target.documentElement.scrollHeight
       ) {
-        updateIndexes()
+        updateIndexes();
         console.log("at the bottom of the page");
       }
     });
